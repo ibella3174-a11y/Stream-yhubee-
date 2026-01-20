@@ -29,6 +29,7 @@ body {
 
 .container {
   padding: 15px;
+  padding-bottom: 110px;
 }
 
 .header {
@@ -103,6 +104,20 @@ body {
 .gift-icon {
   font-size: 36px;
   color: #f4a622;
+  animation: giftWobble 2s infinite ease-in-out;
+  display: inline-block;
+}
+
+@keyframes giftWobble {
+  0% { transform: rotate(0deg) scale(1); }
+  10% { transform: rotate(15deg) scale(1.1); }
+  20% { transform: rotate(-15deg) scale(1.1); }
+  30% { transform: rotate(10deg) scale(1.1); }
+  40% { transform: rotate(-10deg) scale(1.1); }
+  50% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+    }
 }
 .actions-title {
   margin-top: 25px;
@@ -306,6 +321,7 @@ body {
   </div>
 
 </div>
+</div>
 <div class="bottom-nav">
   <a href="#" class="nav-item">
     <i class="fa-solid fa-house"></i><br>Home
@@ -388,11 +404,21 @@ body {
 function updateGreeting() {
   const hour = new Date().getHours();
   const greetingText = document.getElementById("greeting");
+  
+  // Retrieve the name from localStorage. 
+  // We use "Guest" as a fallback if no name is found.
+  const fullName = localStorage.getItem("userFullName") || "Guest";
 
-  if (hour < 12) greetingText.innerHTML = "Good Morning";
-  else if (hour < 18) greetingText.innerHTML = "Good Afternoon";
-  else greetingText.innerHTML = "Good Evening";
+  let timeGreeting = "";
+  if (hour < 12) timeGreeting = "Good Morning";
+  else if (hour < 18) timeGreeting = "Good Afternoon";
+  else timeGreeting = "Good Evening";
+
+  // Display the greeting followed by the name
+  greetingText.innerHTML = `${timeGreeting}, ${fullName}`;
 }
+
+// Make sure the function is called
 updateGreeting();
 
 function convertToNaira() {
@@ -459,4 +485,4 @@ function updateBalanceDate() {
 updateBalanceDate();
 </script>
 </body>
-</html>
+  </html>
