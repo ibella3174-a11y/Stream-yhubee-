@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
-
-  <!-- Font Awesome -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -591,7 +589,7 @@ const influencers = [
     name: "Peller",
     img: "image.jpg",
     phrases: [
-      "Join Peller live on Kick and earn ₦15,000",
+      "Join Peller live on Kick earn ₦15,000",
       "Peller is live now! Join him and earn big",
       "Don't miss Peller on Kick - ₦15,000 waiting",
       "Watch Peller now and claim your stream reward",
@@ -645,10 +643,8 @@ function showNextNotification() {
     currentIndex = (currentIndex + 1) % influencers.length;
   }, 6000);
 }
-
-// TRIGGER MODAL ON CLICK
 document.getElementById("dynamicNotif").addEventListener("click", function() {
-  openModal(); // Opens the same "Activation Required" box as Quick Actions
+  openModal();
   this.classList.remove("show");
 });
 
