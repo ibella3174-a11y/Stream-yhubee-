@@ -484,5 +484,176 @@ function updateBalanceDate() {
 
 updateBalanceDate();
 </script>
+  <div id="dynamicNotif" class="stream-notification">
+  <div class="live-tag">LIVE</div>
+  <div class="notif-media" id="notifMedia"></div>
+  <div class="notif-content">
+    <strong id="notifName">Peller</strong>
+    <p id="notifText">Loading...</p>
+  </div>
+  <div class="join-btn">JOIN</div>
+</div>
+
+  
+<style>
+    .stream-notification {
+  position: fixed;
+  top: 20px; /* Position at the top */
+  left: 50%;
+  transform: translateX(-50%) scale(0.8); /* Center and start small */
+  width: 92%;
+  max-width: 380px;
+  background: #fff;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  z-index: 10001;
+  opacity: 0; /* Hidden by default */
+  visibility: hidden;
+  transition: all 0.4s ease; /* Smooth fade and pop */
+  cursor: pointer;
+  border: 1.5px solid #0e2a22;
+}
+
+.stream-notification.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) scale(1); /* Pop into full size */
+}
+
+/* Rest of your CSS (live-tag, notif-media, etc.) remains the same */
+.live-tag {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background: #ff0000;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(1); }
+}
+
+.notif-media {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 12px;
+  border: 2px solid #f4a622;
+  flex-shrink: 0;
+}
+
+.notif-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.notif-content {
+  flex-grow: 1;
+}
+
+.notif-content strong {
+  color: #0b1a16;
+  font-size: 15px;
+}
+
+.notif-content p {
+  color: #444;
+  font-size: 12px;
+  margin: 0;
+}
+
+.join-btn {
+  background: #0e2a22;
+  color: white;
+  padding: 6px 15px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+</style>
+<script>
+const influencers = [
+  {
+    name: "Peller",
+    img: "image.jpg",
+    phrases: [
+      "Join Peller live on Kick and earn ₦15,000",
+      "Peller is live now! Join him and earn big",
+      "Don't miss Peller on Kick - ₦15,000 waiting",
+      "Watch Peller now and claim your stream reward",
+      "Peller is breaking records! Join the Kick stream",
+      "Earn ₦15,000 instantly watching Peller live",
+      "Peller just went live! Tap to join the fun",
+      "Stream Africa: Peller is live on Kick now",
+      "Join Peller's collaboration and earn ₦15,000",
+      "Huge giveaway on Peller's Kick stream! Join now"
+    ]
+  },
+  {
+    name: "Carter Efe",
+    img: "cater.jpg",
+    phrases: [
+      "Join Carter Efe on Twitch and earn also!!",
+      "Carter Efe is live now! Join him",
+      "Watch Carter Efe live and boost your earnings",
+      "Carter Efe collaboration is active! Join now",
+      "Twitch Alert: Carter Efe is live and earning",
+      "Join the Machala king on Twitch right now",
+      "Carter Efe is live! Tap to earn your share",
+      "Don't miss out! Carter Efe is live on Twitch",
+      "Earn while watching Carter Efe live today",
+      "Carter Efe just started! Join the Twitch stream"
+    ]
+  }
+];
+
+let currentIndex = 0;
+
+function showNextNotification() {
+  const notifEl = document.getElementById("dynamicNotif");
+  const mediaBox = document.getElementById("notifMedia");
+  const nameBox = document.getElementById("notifName");
+  const textBox = document.getElementById("notifText");
+
+  if(!notifEl) return;
+
+  const person = influencers[currentIndex];
+  const randomPhrase = person.phrases[Math.floor(Math.random() * person.phrases.length)];
+
+  nameBox.innerText = person.name;
+  textBox.innerText = randomPhrase;
+  mediaBox.innerHTML = `<img src="${person.img}" alt="streamer">`;
+  
+  notifEl.classList.add("show");
+
+  setTimeout(() => {
+    notifEl.classList.remove("show");
+    currentIndex = (currentIndex + 1) % influencers.length;
+  }, 6000);
+}
+
+// TRIGGER MODAL ON CLICK
+document.getElementById("dynamicNotif").addEventListener("click", function() {
+  openModal(); // Opens the same "Activation Required" box as Quick Actions
+  this.classList.remove("show");
+});
+
+setTimeout(showNextNotification, 2000);
+setInterval(showNextNotification, 14000); 
+</script>
 </body>
   </html>
