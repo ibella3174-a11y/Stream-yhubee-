@@ -239,6 +239,61 @@ body {
 .activate-btn:active {
   opacity: 0.8;
 }
+.modal-box.fortune-style {
+  background-color: #fdf59c; 
+  border-radius: 30px;      
+  text-align: center;
+  padding: 30px 20px;
+  position: relative;
+}
+.fortune-style .modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.fortune-style .bell-icon {
+  font-size: 32px;
+  color: #5d140b; 
+}
+.fortune-style h3 {
+  color: #5d140b; 
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0;
+}
+.fortune-style .modal-text {
+  color: #1a1a1a; 
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.4;
+  margin: 20px 0;
+}
+.activate-btn.fortune-btn {
+  background-color: #a30e0e; 
+  color: #ffffff;
+  border-radius: 25px;      
+  padding: 18px 10px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.activate-btn.fortune-btn:active {
+  transform: scale(0.96);
+}
+.fortune-style .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #5d140b;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -338,21 +393,25 @@ body {
   </a>
 </div>
 <div id="activationModal" class="modal-bg">
-  <div class="modal-box">
+  <div class="modal-box fortune-style">
     <div class="modal-header">
-      <span class="warning-icon">⚠️</span>
-      <h3>Activation Required</h3>
-      <span class="close-btn" onclick="closeModal()">✕</span>
+      <i class="fa-solid fa-bell bell-icon"></i>
+      <h3>Notification</h3>
+      <span class="close-btn" onclick="closeModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </span>
     </div>
 
     <p class="modal-text">
-      You're almost there! Complete your account activation by clicking the button below.
+      Hello! You’re yet to activate your Stream account. Please proceed to activate your account to access your bonus and other features.
     </p>
 
-    <a href="activation.html">
-  <button class="activate-btn">Proceed to Activation</button>
-</a>
+    <a href="activation.html" style="text-decoration: none;">
+      <button class="activate-btn fortune-btn">Click Here To Activate Account</button>
+    </a>
   </div>
+</div>
+
 </div>
 <div id="historyModal" class="modal-bg">
   <div class="modal-box" style="background: #fff;">
