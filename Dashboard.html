@@ -463,19 +463,24 @@ body {
 </div>
 
 <script>
-
 function updateGreeting() {
   const hour = new Date().getHours();
   const greetingText = document.getElementById("greeting");
+  
+  // Retrieve the name from localStorage. 
+  // We use "Guest" as a fallback if no name is found.
   const fullName = localStorage.getItem("userFullName") || "Guest";
 
   let timeGreeting = "";
   if (hour < 12) timeGreeting = "Good Morning";
   else if (hour < 18) timeGreeting = "Good Afternoon";
   else timeGreeting = "Good Evening";
+
+  // Display the greeting followed by the name
   greetingText.innerHTML = `${timeGreeting}, ${fullName}`;
 }
 
+// Make sure the function is called
 updateGreeting();
 
 function convertToNaira() {
@@ -495,8 +500,6 @@ function closeModal() {
 document.querySelectorAll(".action").forEach(btn => {
   btn.addEventListener("click", openModal);
 });
-document.querySelector(".claim-card").addEventListener("click", openModal);
-
 function openHistory() {
   document.getElementById("historyModal").style.display = "flex";
 }
@@ -524,6 +527,8 @@ function updateBalanceDate() {
   const day = now.getDate();
   const month = now.toLocaleString("default", { month: "long" });
   const year = now.getFullYear();
+
+  // Add ordinal suffix for day
   function ordinalSuffix(d) {
     if (d > 3 && d < 21) return d + 'th';
     switch (d % 10) {
@@ -537,6 +542,7 @@ function updateBalanceDate() {
   dateEl.textContent = `${ordinalSuffix(day)} ${month} ${year}`;
 }
 
+updateBalanceDate();
 updateBalanceDate();
 </script>
   <div id="dynamicNotif" class="stream-notification">
